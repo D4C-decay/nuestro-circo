@@ -64,9 +64,66 @@ body::before {
   z-index: 0;
   pointer-events: none;
   content: "";
-  opacity: 0.32;
+  opacity: 0.26;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.24'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
   mix-blend-mode: soft-light;
+}
+
+body::after {
+  position: fixed;
+  inset: -10%;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    radial-gradient(ellipse 38% 28% at 16% 14%, rgba(124, 58, 237, 0.22), transparent 72%),
+    radial-gradient(ellipse 34% 26% at 84% 22%, rgba(147, 51, 234, 0.18), transparent 74%),
+    radial-gradient(ellipse 42% 32% at 28% 78%, rgba(76, 29, 149, 0.16), transparent 76%),
+    radial-gradient(ellipse 36% 30% at 72% 86%, rgba(88, 28, 135, 0.14), transparent 78%),
+    conic-gradient(from 120deg at 50% 50%, transparent 0deg, rgba(124, 58, 237, 0.08) 40deg, transparent 140deg, rgba(147, 51, 234, 0.06) 220deg, transparent 360deg);
+  filter: blur(40px) saturate(1.08);
+  mix-blend-mode: screen;
+  animation: circus-nebula-drift 68s ease-in-out infinite alternate;
+  will-change: transform, filter;
+}
+
+html::before {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background-image:
+    radial-gradient(1.6px 1.6px at 12% 18%, rgba(196, 181, 253, 0.9), transparent),
+    radial-gradient(1.4px 1.4px at 26% 34%, rgba(167, 139, 250, 0.8), transparent),
+    radial-gradient(1.8px 1.8px at 38% 12%, rgba(192, 132, 252, 0.85), transparent),
+    radial-gradient(1.2px 1.2px at 52% 26%, rgba(139, 92, 246, 0.7), transparent),
+    radial-gradient(1.6px 1.6px at 68% 16%, rgba(168, 85, 247, 0.8), transparent),
+    radial-gradient(1.4px 1.4px at 82% 28%, rgba(147, 51, 234, 0.75), transparent),
+    radial-gradient(1.6px 1.6px at 18% 62%, rgba(196, 181, 253, 0.8), transparent),
+    radial-gradient(1.8px 1.8px at 34% 76%, rgba(167, 139, 250, 0.85), transparent),
+    radial-gradient(1.4px 1.4px at 58% 68%, rgba(192, 132, 252, 0.8), transparent),
+    radial-gradient(1.6px 1.6px at 76% 82%, rgba(168, 85, 247, 0.75), transparent),
+    radial-gradient(1.2px 1.2px at 44% 48%, rgba(139, 92, 246, 0.7), transparent),
+    radial-gradient(1.8px 1.8px at 88% 58%, rgba(147, 51, 234, 0.8), transparent);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  animation: circus-twinkle 9s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+html::after {
+  position: fixed;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background: radial-gradient(ellipse 60% 30% at 50% 0%, rgba(124, 58, 237, 0.12), transparent 70%);
+  filter: blur(60px);
+  transform: rotate(-8deg);
+  animation: circus-spotlight-sweep 38s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
 }
 
 ::selection {
@@ -471,6 +528,85 @@ blockquote {
 
 .passport-button-label {
   color: var(--silver);
+}
+
+
+@keyframes circus-nebula-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  33% {
+    transform: translate3d(-2%, 1.5%, 0) scale(1.02) rotate(0.3deg);
+  }
+  66% {
+    transform: translate3d(1.5%, -1%, 0) scale(1.018) rotate(-0.2deg);
+  }
+  100% {
+    transform: translate3d(-0.8%, 0.8%, 0) scale(1.025) rotate(0.15deg);
+    filter: hue-rotate(4deg);
+  }
+}
+
+@keyframes circus-nebula-drift-alt {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1.01) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(1.2%, 1.8%, 0) scale(1.03) rotate(-0.25deg);
+  }
+  100% {
+    transform: translate3d(-1.6%, -0.6%, 0) scale(1.02) rotate(0.2deg);
+  }
+}
+
+@keyframes circus-twinkle {
+  0%,
+  100% {
+    opacity: 0.16;
+  }
+  10% {
+    opacity: 0.26;
+  }
+  20% {
+    opacity: 0.14;
+  }
+  30% {
+    opacity: 0.32;
+  }
+  40% {
+    opacity: 0.12;
+  }
+  50% {
+    opacity: 0.28;
+  }
+  60% {
+    opacity: 0.16;
+  }
+  70% {
+    opacity: 0.24;
+  }
+  80% {
+    opacity: 0.12;
+  }
+  90% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes circus-spotlight-sweep {
+  0% {
+    transform: translate3d(-10%, -5%, 0) rotate(-8deg);
+    opacity: 0.08;
+  }
+  50% {
+    transform: translate3d(4%, 2%, 0) rotate(-4deg);
+    opacity: 0.14;
+  }
+  100% {
+    transform: translate3d(-6%, 6%, 0) rotate(-10deg);
+    opacity: 0.1;
+  }
 }
 
 @media (max-width: 1020px) {
