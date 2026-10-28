@@ -9,12 +9,13 @@ export function Entry({ onEnter }: { onEnter: () => void }) {
   const [opening, setOpening] = useState(false)
   const timeoutRef = useRef<number | null>(null)
   const { enableMusic, playSfx } = useAudio()
-  const { totalStamps } = useProgress()
+  const { totalStamps, awardStamp } = useProgress()
 
   const enter = (withMusic: boolean) => {
     if (opening) return
     setOpening(true)
     playSfx('click')
+    awardStamp('entrada')
     if (withMusic) enableMusic()
     timeoutRef.current = window.setTimeout(() => {
       onEnter()
